@@ -67,7 +67,7 @@ F = lambda x: 3*exp(x)**2
 a, b = 0.0, 2
 
 exact = F(b) - F(a)
-nvalues = [2**i for i in range(1,10)]
+nvalues = [2**i for i in range(1,5)]
 
 
 
