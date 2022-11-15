@@ -1,15 +1,18 @@
+import sys
 import math
 import matplotlib.pyplot as plt
 from math import tanh
 
-def newton(f,fp,x0,delta,Nmax):
+                    
+def secant(f,x0,x1,delta,Nmax):
     """
     
+
     Parameters
     ----------
     f     : function whose root we want to find
-    fp    : first derivative of f 
-    x0    : Initial guess for the root of f
+ 
+    x0,x1 : Left and right endpoints, respectively, of initial interval
     delta : The tolerance/accuracy we desire
     Nmax  : Maximum number of iterations to be performed
 
@@ -20,29 +23,39 @@ def newton(f,fp,x0,delta,Nmax):
 
     Returns
     -------
-    x0 : The approximation to the root
+    x : The approximation to the root
         DESCRIPTION.
     iter_counter : Number of iterations it takes to satisfy tolerance
 
     """
-    
     iter_counter = 0  # set iteration counter to zero
     
-    while abs(f(x0)) > delta and iter_counter < Nmax:
+    fx0 = f(x0); fx1=f(x1)
+    while abs(fx1) > delta and iter_counter < Nmax:
         try:
-            x0 = x0 - f(x0)/fp(x0)  # Newton's method
-            print(x0)
+            dx = (fx1 - fx0)/(x1-x0)
+            x  = x1 - fx1/dx  # Secant method
+            print(x)
         except:
             raise Exception("Division by zero. f'(x) = 0")
             
+        
+            
         iter_counter +=1 
           
-    return x0, iter_counter
+    return x, iter_counter
 
 def f(x):
     return tanh(x) #x**2-3 #(5.0-x)*math.exp(x)-5
 
-def fp(x):
-    return 1-tanh(x)**2 
+#x0 = 1.08; x1= 1.09
+#x0 = 1.09; x1= 1.1
+#x0 = 1.0; x1= 2.3
+x0 = 1.0; x1= 2.4
 
-print(newton(f,fp,1.09,0.001,7))
+solution, no_iterations = secant(f,x0,x1,1e-6,1)
+print("x0=",x0)
+print("x1=",x1)
+print("Number of iterations = ",no_iterations)
+print("An estimate of the root is ",solution)
+        
