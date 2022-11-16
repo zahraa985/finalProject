@@ -60,7 +60,7 @@ def bisection(f, a, b, delta, return_x_list=False):
         
     
 def f(x):
-    return tanh(x) #x**2-3 #(5.0-x)*math.exp(x)-5
+    return tanh(x) 
 
 solution, no_iterations = bisection(f,-5,3,1e-6)
 print("Number of iterations = ",no_iterations)
