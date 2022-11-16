@@ -62,27 +62,26 @@ class integration:
         return h*result/3.0    
 
 
-f = lambda x: exp(x)**3
-F = lambda x: 3*exp(x)**2
-a, b = 0.0, 2
+f = lambda x: ((x-1)**2)*(x-2)
+F = lambda x: ((x**4)/4)-((4*x**3)/3)+((5*x**2)/2)-(2*x)
+a, b = -1, 2
 
 exact = F(b) - F(a)
-nvalues = [2**i for i in range(1,5)]
+nvalues = [2**i for i in range(1,7)]
 
 
 
-#print("%3d\t %8.6e\t\t %8.6e\t\t %8.6e \t\t %8.6e\t\t %8.6e\t\n" %("n", "lhs error", "rhs error", "midpoint error", "trapezoidal error", "simpson error"))
-print("\t\t%s\t\t \t\t%s\t\t \t\t%s\t\t \t\t%s \t\t \t\t\t%s \t\t\t%s \n" %("n", "lhs", "rhs", "midpoint", "trapezoidal", "simpson"))
+print("\t%s\t \t%s\t   \t%s\t \t\t%s \t\t%s \t\t%s \n" %("n", "lhs error", "rhs error", "midpoint error", "trapezoidal error", "simpson error"))
+#print("\t\t%s\t\t    \t\t%s\t\t    \t\t%s\t\t   \t\t%s \t\t  \t\t\t%s \t\t\t%s    \n" %("n", "lhs", "rhs", "midpoint", "trapezoidal", "simpson"))
 
 for n in nvalues:
     errlhs=abs(exact-integration.lhs(f,a,b,n))
     errrhs=abs(exact-integration.rhs(f,a,b,n))
     errmdpt=abs(exact-integration.midpoint(f,a,b,n))
     errtrap=abs(exact-integration.trapezoidal(f,a,b,n))
-    errtrap=abs(exact-integration.simpson(f, a, b, n))
+    errsim=abs(exact-integration.simpson(f, a, b, n))
 
-    #print("%3d\t %8.6e\t\t %8.6e\t\t %8.6e \t\t %8.6e\n" %(n,errlhs, errrhs, errmdpt, errtrap))
-    #print(f"# of intervals = {n}, LHS error  = {errlhs}")
-
+    print("%3d\t %8.6e\t\t %8.6e\t\t %8.6e\t\t %8.6e\t\t %8.6e\n" %(n,errlhs, errrhs, errmdpt, errtrap, round(errsim,6)))
+    #print("%3d\t %9.6e\t\t %8.6e\t\t %8.6e \t\t %8.6e\t\t %8.6e\n" %(n, integration.lhs(f,a,b,n), integration.rhs(f,a,b,n), integration.midpoint(f,a,b,n), integration.trapezoidal(f,a,b,n), integration.simpson(f, a, b, n)))
     
-    print("%3d\t %8.6e\t\t %8.6e\t\t %8.6e \t\t %8.6e\t\t %8.6e\n" %(n, integration.lhs(f,a,b,n), integration.rhs(f,a,b,n), integration.midpoint(f,a,b,n), integration.trapezoidal(f,a,b,n), integration.simpson(f, a, b, n)))
+    
