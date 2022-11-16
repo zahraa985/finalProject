@@ -80,6 +80,7 @@ for n in nvalues:
     errmdpt=abs(exact-integration.midpoint(f,a,b,n))
     errtrap=abs(exact-integration.trapezoidal(f,a,b,n))
     errsim=abs(exact-integration.simpson(f, a, b, n))
+    print(f"# h = {(b-a)/n}")
 
     print("%3d\t %8.6e\t\t %8.6e\t\t %8.6e\t\t %8.6e\t\t %8.6e\n" %(n,errlhs, errrhs, errmdpt, errtrap, round(errsim,6)))
     #print("%3d\t %9.6e\t\t %8.6e\t\t %8.6e \t\t %8.6e\t\t %8.6e\n" %(n, integration.lhs(f,a,b,n), integration.rhs(f,a,b,n), integration.midpoint(f,a,b,n), integration.trapezoidal(f,a,b,n), integration.simpson(f, a, b, n)))
