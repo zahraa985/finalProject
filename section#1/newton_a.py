@@ -59,6 +59,6 @@ def plot_line(f, xn, f_xn, slope):
     plt.show()
 
 
-print(newton(f,fp,1.09,0.001,13))
+print(newton(f,fp,1.08,0.001,13))
 #print(newton(f,fp,1.09,0.001,7))
 
