@@ -9,7 +9,9 @@ def team5Integrate(f, a, b):
 f = lambda x: 1
 g = lambda x: x
 h = lambda x: x**2
+j = lambda x: x**3
 
 print(team5Integrate(f, 0, 1))
 print(team5Integrate(g, 0, 1))
 print(team5Integrate(h, 0, 1))
+print(team5Integrate(j, 0, 1))
