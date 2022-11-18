@@ -32,7 +32,7 @@ def bisection(f, a, b, delta, return_x_list=False):
     
     print("initial interval: ","a =",a," b =",b," f(a)=", fa," f(b) =",fb)
     
-    iteration_counter = 0
+    iteration_counter = 1
     if return_x_list:
         x_list=[]
         
@@ -46,9 +46,9 @@ def bisection(f, a, b, delta, return_x_list=False):
             a = c; fa = fc   # assign midpoint to a
         else:         
             b = c; fb = fc   # assign midpoint to b
-            
+        print('interval: [%f, %f]' % (a, b)) # print new interval  
         print("a =",a," b =",b, "c =",c," f(a) =", fa," f(b) =",fb," f(c) =",fc)
-            
+        
         iteration_counter += 1
         if return_x_list:
             x_list.append(c)

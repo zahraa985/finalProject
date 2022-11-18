@@ -66,7 +66,7 @@ def plot_line(f, xn, f_xn, slope):
 
 
 #print(newton(f,fp,1.08,0.001))
-#print(newton(f,fp,1.09,0.001,7))
+#print(newton(f,fp,1.09,0.001))
 
 def application():
     solution, no_iterations = \

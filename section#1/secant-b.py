@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from math import tanh
 
                     
-def secant(f,x0,x1,delta,Nmax):
+def secant(f,x0,x1,delta):
     """
     
 
@@ -28,34 +28,43 @@ def secant(f,x0,x1,delta,Nmax):
     iter_counter : Number of iterations it takes to satisfy tolerance
 
     """
+    
     iter_counter = 0  # set iteration counter to zero
     
     fx0 = f(x0); fx1=f(x1)
-    while abs(fx1) > delta and iter_counter < Nmax:
+    while abs(fx1) > delta and iter_counter < 100:
         try:
-            dx = (fx1 - fx0)/(x1-x0)
-            x  = x1 - fx1/dx  # Secant method
-            print(x)
-        except:
-            raise Exception("Division by zero. f'(x) = 0")
+            print(x1)
+
+            dx = float(fx1 - fx0)/(x1-x0)
+            x  = x1 - float(fx1)/dx  # Secant method
             
-        
-            
+        except ZeroDivisionError:
+            print("Error! - denominator zero for x = ", x)
+            sys.exit(1)     # Abort with error
+
+        x0 = x1; x1 = x
+        fx0 = f(x0); fx1=f(x1)
         iter_counter +=1 
-          
+    
+
+    # Here, either a solution is found, or too many iterations
+    if abs(f(x1)) > delta:
+        iter_counter = -1
     return x, iter_counter
 
 def f(x):
-    return tanh(x) #x**2-3 #(5.0-x)*math.exp(x)-5
+    return tanh(x) 
 
 #x0 = 1.08; x1= 1.09
 #x0 = 1.09; x1= 1.1
-#x0 = 1.0; x1= 2.3
-x0 = 1.0; x1= 2.4
+x0 = 1.0; x1= 2.3
+#x0 = 1.0; x1= 2.4
 
-solution, no_iterations = secant(f,x0,x1,1e-6,1)
-print("x0=",x0)
-print("x1=",x1)
-print("Number of iterations = ",no_iterations)
-print("An estimate of the root is ",solution)
-        
+solution, no_iterations = secant(f,x0,x1,1.0e-6)
+
+if no_iterations > 0:    # Solution found
+    print("Number of function calls: %d" % (2 + no_iterations))
+    print("A solution is: %f" % (solution))
+else:
+    print("Solution not found!")
