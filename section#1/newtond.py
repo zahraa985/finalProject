@@ -25,7 +25,7 @@ def newtond(f,fp,x0,delta):
     iter_counter : Number of iterations it takes to satisfy tolerance
 
     """
-    
+   
     iter_counter = 0  # set iteration counter to zero
     f_value = f(x0)
 
@@ -54,15 +54,3 @@ def fp(x):
 #print(newton(f,fp,1.08,0.001))
 #print(newton(f,fp,1.09,0.001,7))
 
-def application():
-    solution, no_iterations = \
-                      newtond(f,fp,1.09,0.001)
-    
-    if no_iterations > 0:    # Solution found
-        print("Number of function calls: %d" % (1 + 2*no_iterations)) 
-        print("A solution is: %f" % (solution))
-    else:
-        print("Solution not found!")
-
-if __name__ == '__main__':
-    application()

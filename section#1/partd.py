@@ -1,7 +1,9 @@
 from numpy import tanh
 from newtond import newtond
 
-def bisection_Newton(f, x_L, x_R, delta, s=0.1):
+def bisection_Newton(f, fp,x_L, x_R, delta, s=0.1):
+    
+    
     f_L = f(x_L)
     f_R = f(x_R)
     if f_L*f(x_R) > 0:
@@ -27,7 +29,7 @@ def bisection_Newton(f, x_L, x_R, delta, s=0.1):
         print("a =",x_L," b =",x_R, "c =",x_M," f(a) =",f_L," f(b) =",f_R," f(c) =",f_M)
 
         iteration_counter += 1
-    solution, no_iterations = newtond(f,fp,x0,delta)
+    solution, no_iterations = newtond(f,fp,x_M,delta)
     return solution, (iteration_counter + no_iterations)
 
 def f(x):
@@ -38,10 +40,10 @@ def fp(x):
 
 delta = 1e-6
 a = -10;   b = 15
-x0=1.09
+
 
 
 solution, no_iterations = \
-                     bisection_Newton(f, a, b, delta)
+                     bisection_Newton(f, fp, a, b, delta)
 print("A solution x = %f was reached in %d iterations" % \
 (solution,no_iterations))

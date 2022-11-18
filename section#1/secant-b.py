@@ -55,11 +55,10 @@ def secant(f,x0,x1,delta):
 
 def f(x):
     return tanh(x) 
-
 #x0 = 1.08; x1= 1.09
 #x0 = 1.09; x1= 1.1
-x0 = 1.0; x1= 2.3
-#x0 = 1.0; x1= 2.4
+#x0 = 1.0; x1= 2.3
+x0 = 1.0; x1= 2.4
 
 solution, no_iterations = secant(f,x0,x1,1.0e-6)
 

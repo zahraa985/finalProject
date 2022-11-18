@@ -65,16 +65,16 @@ def plot_line(f, xn, f_xn, slope):
     plt.show()
 
 
-#print(newton(f,fp,1.08,0.001))
+#print(newton(f,fp,1.08,0.001))s
 #print(newton(f,fp,1.09,0.001))
 
 def application():
     solution, no_iterations = \
-                      newton(f,fp,1.08,0.001)
+                      newton(f,fp,1.09,0.001)
     
     if no_iterations > 0:    # Solution found
-        print("Number of function calls: %d" % (1 + 2*no_iterations)) 
-        print("A solution is: %f" % (solution))
+        print("Number of Iterations: %d" % (1 + 2*no_iterations)) 
+        print("A solution is: %f" % (solution)) #nan=no solution value for x: Newton's method diverge.
     else:
         print("Solution not found!")
 
