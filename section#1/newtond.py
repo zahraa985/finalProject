@@ -2,7 +2,7 @@ import math
 import matplotlib.pyplot as plt
 from numpy import tanh, linspace
 
-def newton(f,fp,x0,delta):
+def newtond(f,fp,x0,delta):
     """
     
     Parameters
@@ -32,10 +32,8 @@ def newton(f,fp,x0,delta):
     while abs(f(x0)) > delta and iter_counter < 100:
         try:
             print('x value: ', x0)
-            plot_line(f, x0, f_value, fp(x0))
             x0 = x0 - float(f(x0)/fp(x0))  # Newton's method
-        except:
-            raise Exception("Division by zero. f'(x) = 0")
+        except ZeroDivisionError:
             print("Error! - derivative zero for x = ", x)
             sys.exit(1)     # Abort with error
         f_value = f(x0)
@@ -53,24 +51,12 @@ def fp(x):
     return 1-tanh(x)**2 
 
 
-def plot_line(f, xn, f_xn, slope):
-    # Plot both f(x) and the tangent
-    x_f = linspace(-2,2,100)
-    y_f = f(x_f)
-    x_t = linspace(xn-2,xn+2,10)
-    y_t = slope*x_t + (f_xn - slope*xn)  # Straight line: ax + b
-    plt.figure() 
-    plt.plot(x_t, y_t, 'r-', x_f, y_f, 'b-');    plt.grid('on')
-    plt.xlabel('x');    plt.ylabel('f(x)')
-    plt.show()
-
-
 #print(newton(f,fp,1.08,0.001))
 #print(newton(f,fp,1.09,0.001,7))
 
 def application():
     solution, no_iterations = \
-                      newton(f,fp,1.08,0.001)
+                      newtond(f,fp,1.09,0.001)
     
     if no_iterations > 0:    # Solution found
         print("Number of function calls: %d" % (1 + 2*no_iterations)) 

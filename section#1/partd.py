@@ -1,5 +1,5 @@
 from numpy import tanh
-from newton_a import newton
+from newtond import newtond
 
 def bisection_Newton(f, x_L, x_R, delta, s=0.1):
     f_L = f(x_L)
@@ -27,7 +27,7 @@ def bisection_Newton(f, x_L, x_R, delta, s=0.1):
         print("a =",x_L," b =",x_R, "c =",x_M," f(a) =",f_L," f(b) =",f_R," f(c) =",f_M)
 
         iteration_counter += 1
-    solution, no_iterations = newton(f,fp,x0,delta,Nmax)
+    solution, no_iterations = newtond(f,fp,x0,delta)
     return solution, (iteration_counter + no_iterations)
 
 def f(x):
@@ -39,7 +39,7 @@ def fp(x):
 delta = 1e-6
 a = -10;   b = 15
 x0=1.09
-Nmax = 1
+
 
 solution, no_iterations = \
                      bisection_Newton(f, a, b, delta)
