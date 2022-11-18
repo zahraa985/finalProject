@@ -27,8 +27,8 @@ class integration:
         return result    
 
 
-f = lambda x: ((x-1)**2)*(x-2)
-F = lambda x: ((x**4)/4)-((4*x**3)/3)+((5*x**2)/2)-(2*x)
+f = lambda x: x**2
+F = lambda x: (x**3)/3
 a, b = -1, 2
 
 exact = F(b) - F(a)
@@ -37,11 +37,11 @@ nvalues = [2**i for i in range(1,7)]
 
 
 
-#print("\t%s\t\t \t\t%s\t\t  \n" %("n", "Cubic Intergration Algorithm"))
+print("\t%s\t\t \t\t%s\t\t  \n" %("n", "Cubic Intergration Algorithm"))
 
 for n in nvalues:
     
     errsim=abs(exact-integration.cubic(f, a, b, n))
-    print(f"# h = {(b-a)/n}, Cubic Intergration error = {round(errsim,6)}")
-    #print(n, integration.simpson(f, a, b, n))
+    #print(f"# h = {(b-a)/n}, Cubic Intergration error = {round(errsim,6)}")
+    print(n, integration.cubic(f, a, b, n))
 

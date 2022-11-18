@@ -38,8 +38,8 @@ def fp(x):
 
 delta = 1e-6
 a = -10;   b = 15
-x0=1.08
-Nmax = 100
+x0=1.09
+Nmax = 1
 
 solution, no_iterations = \
                      bisection_Newton(f, a, b, delta)
