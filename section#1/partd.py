@@ -1,35 +1,35 @@
 from numpy import tanh
 from newtond import newtond
 
-def bisection_Newton(f, fp,x_L, x_R, delta, s=0.1):
+def bisection_Newton(f, fp,a, b, delta, s=0.1):
+    #x_L=a,x_R=b
     
-    
-    f_L = f(x_L)
-    f_R = f(x_R)
-    if f_L*f(x_R) > 0:
+    fa = f(a)
+    fb = f(b)
+    if fa*f(b) > 0:
         print("Error! Function does not have opposite \ signs at interval endpoints!")
         sys.exit(1)
 
-    print("initial interval: ","a =",x_L," b =",x_R," f(a)=", f_L," f(b) =",f_R)
+    print("initial interval: ","a =",a," b =",b," f(a)=", fa," f(b) =",fb)
 
-    x_M = float(x_L + x_R)/2.0
-    f_M = f(x_M)
+    c = float(a + b)/2.0
+    fc = f(c)
     iteration_counter = 1
-    interval_Newton = s*(x_R - x_L)    # Limit for swith to Newton
+    interval_Newton = s*(b - a)    # Limit for swith to Newton
     
-    while (x_R - x_L) > interval_Newton:
-        if f_L*f_M > 0:   # i.e. same sign
-            x_L = x_M
-            f_L = f_M
+    while (b - a) > interval_Newton:
+        if fa*fc > 0:   # i.e. same sign
+            a = c
+            fa = fc
         else:
-            x_R = x_M
-        x_M = float(x_L + x_R)/2
-        f_M = f(x_M)
+            b = c
+        c = float(a + b)/2
+        fc = f(c)
 
-        print("a =",x_L," b =",x_R, "c =",x_M," f(a) =",f_L," f(b) =",f_R," f(c) =",f_M)
+        print("a =",a," b =",b, "c =",c," f(a) =",fa," f(b) =",fb," f(c) =",fc)
 
         iteration_counter += 1
-    solution, no_iterations = newtond(f,fp,x_M,delta)
+    solution, no_iterations = newtond(f,fp,c,delta)
     return solution, (iteration_counter + no_iterations)
 
 def f(x):
@@ -39,9 +39,9 @@ def f(x):
 def fp(x):
     return (f(x+h) - f(x-h))/(2*h)
 
-fp = lambda x: 1-tanh(x)**2 
-x = 1;
-exact_deriv_value = fp(x)
+#The discretization sizes
+h = 0.1/2
+
 
 
 delta = 1e-6

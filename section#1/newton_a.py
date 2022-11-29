@@ -1,6 +1,7 @@
 import math
 import matplotlib.pyplot as plt
 from numpy import tanh, linspace
+import numpy as np
 #from numericalDifferentiation import cnt_diff
 
 def newton(f,fp,x0,delta):
@@ -13,18 +14,15 @@ def newton(f,fp,x0,delta):
     x0    : Initial guess for the root of f
     delta : The tolerance/accuracy we desire
     Nmax  : Maximum number of iterations=100
-
     Raises
     ------
     Exception
         DESCRIPTION.
-
     Returns
     -------
     x0 : The approximation to the root
         DESCRIPTION.
     iter_counter : Number of iterations it takes to satisfy tolerance
-
     """
     
     iter_counter = 0  # set iteration counter to zero
@@ -54,10 +52,8 @@ def f(x):
 def fp(x):
     return (f(x+h) - f(x-h))/(2*h)
 
-fp = lambda x: 1-tanh(x)**2 
-x = 1;
-exact_deriv_value = fp(x)
-
+#The discretization sizes
+h = 0.1/2
 
 def plot_line(f, xn, f_xn, slope):
     # Plot both f(x) and the tangent
@@ -71,8 +67,6 @@ def plot_line(f, xn, f_xn, slope):
     plt.show()
 
 
-#print(newton(f,fp,1.08,0.001))s
-#print(newton(f,fp,1.09,0.001))
 
 def application():
     solution, no_iterations = \

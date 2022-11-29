@@ -51,11 +51,10 @@ def f(x):
 def fp(x):
     return (f(x+h) - f(x-h))/(2*h)
 
-fp = lambda x: 1-tanh(x)**2 
-x = 1;
-exact_deriv_value = fp(x)
+#The discretization sizes
+h = 0.1/2
 
 
-print(newtond(f,fp,1.08,0.001))
+print(newtond(f,fp,1.09,0.001))
 
 
