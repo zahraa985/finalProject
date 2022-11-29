@@ -2,6 +2,7 @@ import math
 import matplotlib.pyplot as plt
 from numpy import tanh, linspace
 import numpy as np
+
 #from numericalDifferentiation import cnt_diff
 
 def newton(f,fp,x0,delta):
@@ -38,12 +39,15 @@ def newton(f,fp,x0,delta):
             print("Error! - derivative zero for x = ", x)
             sys.exit(1)     # Abort with error
         f_value = f(x0)
-        iter_counter +=1 
+        iter_counter +=1
+
 
     # Here, either a solution is found, or too many iterations
     if abs(f_value) > delta:
         iteration_counter = -1
     return x0, iter_counter
+    
+
 
 def f(x):
     return tanh(x) 
@@ -55,6 +59,7 @@ def fp(x):
 #The discretization sizes
 h = 0.1/2
 
+    
 def plot_line(f, xn, f_xn, slope):
     # Plot both f(x) and the tangent
     x_f = linspace(-2,2,100)
@@ -65,8 +70,8 @@ def plot_line(f, xn, f_xn, slope):
     plt.plot(x_t, y_t, 'r-', x_f, y_f, 'b-');    plt.grid('on')
     plt.xlabel('x');    plt.ylabel('f(x)')
     plt.show()
-
-
+    plt.close('all')
+    
 
 def application():
     solution, no_iterations = \
