@@ -1,10 +1,6 @@
 from numpy import tanh
-# -*- coding: utf-8 -*-
+
 """
-Created on Mon Apr  4 12:08:29 2022
-
-@author: hboateng
-
 This program provides an example of truncation and round-off error
 using a forward difference approximation
 """
