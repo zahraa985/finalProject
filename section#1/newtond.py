@@ -47,10 +47,15 @@ def newtond(f,fp,x0,delta):
 def f(x):
     return tanh(x) 
 
+# Find the forward difference approximation
 def fp(x):
-    return 1-tanh(x)**2 
+    return (f(x+h) - f(x-h))/(2*h)
+
+fp = lambda x: 1-tanh(x)**2 
+x = 1;
+exact_deriv_value = fp(x)
 
 
-#print(newton(f,fp,1.08,0.001))
-#print(newton(f,fp,1.09,0.001,7))
+print(newtond(f,fp,1.08,0.001))
+
 

@@ -35,8 +35,14 @@ def bisection_Newton(f, fp,x_L, x_R, delta, s=0.1):
 def f(x):
     return tanh(x) 
 
+# Find the forward difference approximation
 def fp(x):
-    return 1-tanh(x)**2 
+    return (f(x+h) - f(x-h))/(2*h)
+
+fp = lambda x: 1-tanh(x)**2 
+x = 1;
+exact_deriv_value = fp(x)
+
 
 delta = 1e-6
 a = -10;   b = 15

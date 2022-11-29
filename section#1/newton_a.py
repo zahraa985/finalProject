@@ -1,6 +1,7 @@
 import math
 import matplotlib.pyplot as plt
 from numpy import tanh, linspace
+#from numericalDifferentiation import cnt_diff
 
 def newton(f,fp,x0,delta):
     """
@@ -49,8 +50,13 @@ def newton(f,fp,x0,delta):
 def f(x):
     return tanh(x) 
 
+# Find the forward difference approximation
 def fp(x):
-    return 1-tanh(x)**2 
+    return (f(x+h) - f(x-h))/(2*h)
+
+fp = lambda x: 1-tanh(x)**2 
+x = 1;
+exact_deriv_value = fp(x)
 
 
 def plot_line(f, xn, f_xn, slope):
