@@ -1,6 +1,5 @@
 import sys
 import math
-import matplotlib.pyplot as plt
 from math import tanh
 
 def bisection(f, a, b, delta, return_x_list=False):
@@ -30,24 +29,24 @@ def bisection(f, a, b, delta, return_x_list=False):
         print("Error! f must have different signs at the endpoints. Aborting")
         sys.exit(1)
     
-    print("initial interval: ","a =",a," b =",b," f(a)=", fa," f(b) =",fb)
+    #print("initial interval: ","a =",a," b =",b," f(a)=", fa," f(b) =",fb)
+    
     
     iteration_counter = 1
     if return_x_list:
         x_list=[]
         
-    while(abs(b-a) >  2*delta): # while the size  of interval is 
-                                # larger  than the tolerance
-        c = float(b+a)/2.0             # set c to the midpoint of the interval
- 
-        fc = f(c)               # calculate the value of f at c
+    while(abs(b-a) >  2*delta): # while the size  of interval is # larger  than the tolerance
         
+        c = float(b+a)/2.0             # set c to the midpoint of the interval
+        fc = f(c)               # calculate the value of f at c
+    
         if fc*fb < 0: # if f(c) and f(b) have different signs
             a = c; fa = fc   # assign midpoint to a
         else:         
             b = c; fb = fc   # assign midpoint to b
         print('interval: [%f, %f]' % (a, b)) # print new interval  
-        print("a =",a," b =",b, "c =",c," f(a) =", fa," f(b) =",fb," f(c) =",fc)
+        #print("a =",a," b =",b, "c =",c," f(a) =", fa," f(b) =",fb," f(c) =",fc)
         
         iteration_counter += 1
         if return_x_list:
@@ -62,7 +61,7 @@ def bisection(f, a, b, delta, return_x_list=False):
 def f(x):
     return tanh(x) 
 
-solution, no_iterations = bisection(f,-5,3,1e-6)
+solution, no_iterations = bisection(f,-5,3,1.0e-6)
 print("Number of iterations = ",no_iterations)
 print("An estimate of the root is ",solution)
                                 

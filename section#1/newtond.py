@@ -55,6 +55,5 @@ def fp(x):
 h = 0.1/2
 
 
-print(newtond(f,fp,1.09,0.001))
 
 
