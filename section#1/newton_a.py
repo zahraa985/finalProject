@@ -75,7 +75,7 @@ def plot_line(f, xn, f_xn, slope):
 
 def application():
     solution, no_iterations = \
-                      newton(f,fp,1.09,0.001)
+                      newton(f,fp,1.08,0.001)
     
     if no_iterations > 0:    # Solution found
         print("Number of Iterations: %d" % (1 + 2*no_iterations)) 
